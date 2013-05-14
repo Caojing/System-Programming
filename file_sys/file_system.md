@@ -27,4 +27,13 @@
 		-return (struct ext2_inode *)(get_block(inode_table_block) + inode * inode_size);
 	-由inode表得到数据段地址：
 		-pdir = （struct ext2_dir_entry_2 *）（get_block(get_inode(2)->i_block【0】)
- 	
+###虚拟文件系统（VFS）
+	 	看起来用起来都一样，因为把它放在抽象层了。
+		-输入重定向
+			fd = open(filename, O_RDONLY);
+			dup2(fd, 0);
+			close(fd);
+		-输出重定向
+			fd = open(filename, O_WRONLY);
+			dup2(fd, 1);
+			close(fd);
