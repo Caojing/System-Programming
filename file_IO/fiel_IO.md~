@@ -17,6 +17,4 @@
 		-int fcntl(int fd, int cmd, ...);	
 		-fcntl(0, F_SETFL, O_RDWR | O_NONBLOCK);
 		-flags = fcntl(0, F_GETFL);
-	###mmap
-		-void *mmap(void *addr, size_t len, int prot, int flags, int filedes, off_t off);
-		-int munmap(void *addr, size_t len);
+		
