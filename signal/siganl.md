@@ -1,0 +1,29 @@
+###about signal
+
+###注册信号
+	-struct sigaction newact;
+
+	-newact.sa_handler = sig_set;
+	-sigemptyset(&newact);
+	-newact.sa_flags = 0;
+	-sigaction(int how, &newact, NULL);
+###s设置信号屏蔽字
+	-sigset_t newmask, oldmask, suspmask;
+	
+	-sigemptyset(&newmask);
+	-sigaddset(SIGINT, &newmask);	
+	-sigprocmask(SIG_BLOCK, &newmask, &oldmask);
+
+###解除信号屏蔽字
+	-sigdelset(&newmask, SIGINT);
+	-sigsuspend(&suspmask)	
+	-sigprocmask(SIG_SETMASK, &newmask, &oldmask);
+###about #define
+	-#x代表为转变为字符串
+	-##x代表连接，把x连接进去
+	-'\'代表连接号
+###man 7 signal
+###pause()
+	-使调用进程挂起直到有信号到达
+	-pause函数没有机会返回，相当与只有出错的返回值
+		-
