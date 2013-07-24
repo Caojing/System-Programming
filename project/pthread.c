@@ -65,9 +65,9 @@ void *p1(void *arg)
 		sem_wait(&p2_is_empty);
 
 		pthread_mutex_lock(&mylock);
-		printf("user: ");
-		scanf("%d", &p1_msg);
-//		p1_msg = get_rand();
+//		printf("user: ");
+//		scanf("%d", &p1_msg);
+		p1_msg = get_rand();
 //		printf("%s: counter %d -> %d\n", (char *)arg, counter, p1_msg);
 		pthread_mutex_unlock(&mylock);
 

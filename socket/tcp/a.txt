@@ -1,0 +1,51 @@
+void cope_detail(int sockfd)
+{
+	char buf[MAXLINE] = {0};
+	int i, n, len = 0;
+	int connfd = sockfd;
+	puts("1");
+	bzero(buf,sizeof(buf));
+	if(read(connfd,&len,sizeof(len))<=0)
+		goto fin;
+	puts("2");
+	if(read(connfd,buf,len)<=0)
+		goto fin;
+
+	puts(buf);
+	int fd = open(buf,O_WRONLY|O_TRUNC|O_CREAT,0644);
+	if(read(connfd,&len,sizeof(len))<=0)
+		goto fin;
+	while(len > 0)
+	{
+		if(len > sizeof(buf))
+			n = read(connfd,buf,sizeof(buf));
+		else
+			n = read(connfd,buf,len);	
+		if(n > 0)
+			write(fd,buf,n);
+		else
+			break;
+		len -= n;
+	}
+	close(fd);
+	puts("file copied");
+	return;
+//将标准输入纳入select监控范围
+//当输入普通信息时，回显一次
+//当输入“exit”时，服务器程序退出
+fin:
+	close(sockfd);
+	FD_CLR(sockfd,&allset);
+	client[i] = -1;
+	if(maxi == i)
+	{
+		while(client[maxi] == -1 && maxi > 0)
+			maxi--;
+	}
+}
+
+
+
+
+
+
